@@ -15,5 +15,8 @@ namespace SalesWebProject.Data
         }
 
         public DbSet<SalesWebProject.Models.Department> Department { get; set; }
+        public DbSet<SalesWebProject.Models.Seller> Seller { get; set; }
+        public DbSet<SalesWebProject.Models.SalesRecord> SalesRecord { get; set; }
+        
     }
 }
