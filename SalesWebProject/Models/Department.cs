@@ -12,9 +12,8 @@ namespace SalesWebProject.Models
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
         public Department() { }
 
-        public Department(int id, string name)
-        {
-            Id = id;
+        public Department(string name)
+        {            
             Name = name;
         }
 

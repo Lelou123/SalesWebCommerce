@@ -10,8 +10,8 @@ using SalesWebProject.Data;
 namespace SalesWebProject.Migrations
 {
     [DbContext(typeof(SalesWebProjectContext))]
-    [Migration("20220228163209_OtherEntities")]
-    partial class OtherEntities
+    [Migration("20220228190134_InitialWEntities")]
+    partial class InitialWEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,8 +38,10 @@ namespace SalesWebProject.Migrations
 
             modelBuilder.Entity("SalesWebProject.Models.SalesRecord", b =>
                 {
-                    b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
@@ -53,7 +55,7 @@ namespace SalesWebProject.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("SellerId");
 
