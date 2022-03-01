@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SalesWebProject.Data;
-
+using SalesWebProject.Services;
 namespace SalesWebProject
 {
     public class Startup
@@ -31,6 +31,7 @@ namespace SalesWebProject
                     options.UseSqlServer(Configuration.GetConnectionString("SalesWebProjectContext")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<SellerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
