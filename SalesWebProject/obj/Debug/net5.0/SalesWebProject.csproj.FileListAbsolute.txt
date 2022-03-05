@@ -870,3 +870,4 @@ C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProje
 C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\ref\SalesWebProject.dll
 C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\Sellers\Index.cshtml.g.cs
 C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\Sellers\Create.cshtml.g.cs
+C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\Sellers\Delete.cshtml.g.cs
