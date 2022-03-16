@@ -873,3 +873,6 @@ C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProje
 C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\Sellers\Delete.cshtml.g.cs
 C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\Sellers\Details.cshtml.g.cs
 C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\Sellers\Edit.cshtml.g.cs
+C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\SalesRecords\Index.cshtml.g.cs
+C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\SalesRecords\GroupingSearch.cshtml.g.cs
+C:\Users\Muril\Documents\Udemy\Csharp-Udemy\4-Web\SalesWebCommerce\SalesWebProject\obj\Debug\net5.0\Razor\Views\SalesRecords\SimpleSearch.cshtml.g.cs

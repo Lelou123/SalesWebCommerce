@@ -4,6 +4,9 @@ using SalesWebProject.Models.ViewModels;
 using SalesWebProject.Services;
 using System.Collections.Generic;
 using SalesWebProject.Services.Exceptions;
+using System.Diagnostics;
+using System;
+using System.Threading.Tasks;
 
 namespace SalesWebProject.Controllers
 {
@@ -17,38 +20,44 @@ namespace SalesWebProject.Controllers
             _sellerService = sellerService;
             _departmentService = departmentService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _sellerService.FindAll();
+            var list = await _sellerService.FindAllAsync();
             return View(list);
         }
 
-        public IActionResult Create()
+        public async  Task<IActionResult> Create()
         {
-            var departments = _departmentService.FindAll();
+            var departments = await _departmentService.FindAllAsync();
             var viewModel = new SellerFormViewModel { Departments = departments };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Seller seller)
+        public async Task<IActionResult> Create(Seller seller)
         {
-            _sellerService.Insert(seller);
+            if (!ModelState.IsValid)
+            {
+                var departments = await _departmentService.FindAllAsync();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                return View(viewModel);
+            }
+            await _sellerService.InsertAsync(seller);
             return RedirectToAction(nameof(Index));
         }
 
 
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new {message = "Id is Null (Not provided)"});
             }
-            var obj = _sellerService.FindById(id.Value);
+            var obj = await _sellerService.FindByIdAsync(id.Value);
             if(obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id Not Found" });
             }
 
             return View(obj);
@@ -57,63 +66,85 @@ namespace SalesWebProject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _sellerService.Remove(id);
+            try
+            {
+                await _sellerService.RemoveAsync(id);
+            }
+            catch (IntegrityException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message +  "Cant delete cus she / he has sales"});
+            }
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id Not Provided" });
             }
-            var obj = _sellerService.FindById(id.Value);
+            var obj = await _sellerService.FindByIdAsync(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id Not Found" });
             }
 
             return View(obj);
         }
-        public IActionResult Edit(int? id)
+
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id Not Provided" });
             }
-            var obj = _sellerService.FindById(id.Value);
+            var obj = await _sellerService.FindByIdAsync(id.Value);
             if(obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id Not Found" });
             }
-            List <Department> departments = _departmentService.FindAll();
+            List <Department> departments = await _departmentService.FindAllAsync();
             SellerFormViewModel sellerFormViewModel = new SellerFormViewModel { Seller = obj, Departments = departments };
             return View(sellerFormViewModel);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Seller seller)
+        public async Task<IActionResult> Edit(int id, Seller seller)
         {
-            if(id != seller.Id)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                var departments = await _departmentService.FindAllAsync();
+                var viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
+                return View(viewModel);
+            }
+            if (id != seller.Id)
+            {
+                return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
             }
             try
             {
-                _sellerService.Update(seller);
+                await _sellerService.UpdateAsync(seller);
             }
-            catch(NotFoundException e)
+            catch(ApplicationException e)
             {
-                return NotFound();
-            }
-            catch(DbConcurrencyException e)
-            {
-                return BadRequest();
-            }
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }            
             return RedirectToAction(nameof(Index));
         }
-    }    
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier // get intern id of requisition
+            };
+            return View(viewModel);
+        }
+    }
+    
 }
