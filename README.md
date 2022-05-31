@@ -28,6 +28,6 @@ Welcome to my repository made from a challenge in the last module of "course C# 
 
 - ASP.NET CORE
 
-- SQL Sever
+- SQL Server
 
 <hr>
