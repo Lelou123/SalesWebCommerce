@@ -1,19 +1,17 @@
 # SalesWebCommerce 💰:
 
-Bem-vindo ao meu repositorio feito por um desafio proposto pelo ultimo modulo do curso C# completo do professor Nélio Alves.
+Welcome to my repository made from a challenge in the last module of "course C# complete by professor Nelio Alves".
+
+<h2>Applications resources</h2>
+- Main function: Online sales system.<br>
+- Layout: White Color
 
 
+<h2>How does it works?</h2>
 
-<h2>Recursos aplicação</h2>
-- Função principal: Comercio online
-- Layout: Cor branca.
-
-<h2>Como funciona?</h2>
-
-
-1. O projeto possui departamentos, vendedores e vendas.
-3. Ao cadastrar um vendedor é necessario obrigatoriamente você associar ele com algum departamento.
-4. Voce pode fazer uma pesquisa agrupada ou simples de vendas em algum periodo.
+1. The project has departments, salers, and sales.
+3. After subscribe a saler its important you associate him to a department
+4. You can do a group or simple search of the sales by period
 
 
 ### Desktop Preview
@@ -22,7 +20,7 @@ Bem-vindo ao meu repositorio feito por um desafio proposto pelo ultimo modulo do
 
 
 
-### Foi utilizado no projeto
+### Languages and Frameworks
 
 - C#
 
